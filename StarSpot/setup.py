@@ -2,10 +2,11 @@
 
 from distutils.core import setup, Extension
 import numpy, os
+import sys
 
 #Change those variables to meet your system installation
 macosx_python_include_dir = ['/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/numpy/core/include/','/Library/Python/2.7/site-packages/numpy/core/include/']
-linux_python_include_dir = ['/usr/lib64/python2.7/site-packages/numpy/core/include/','/usr/lib64/python2.6/site-packages/numpy/core/include/','/usr/lib/python2.3/site-packages/numpy/core/include/']
+linux_python_include_dir = [f'/usr/lib{p}/python{sys.version[:3]}/site-packages/numpy/core/include/' for p in ('', '64')]
 
 scisoft_gsl_include_dir = ['/usr/local/scisoft/packages/gsl/include/']
 macport_gsl_include_dir = ['/opt/local/include/']
