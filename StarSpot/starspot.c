@@ -157,7 +157,11 @@ void gauss_bis(double *vrad_ccf, double *ccf, double *err, int n1, double *mod, 
     
     while (status == GSL_CONTINUE && j < 10000);
     
-    gsl_multifit_covar (s->J, 0.0, covar);
+    gsl_matrix *J = NULL;
+    J = gsl_matrix_alloc(s->fdf->n, s->fdf->p);
+    gsl_multifit_fdfsolver_jac(s, J);
+    gsl_multifit_covar(J, 0.0, covar);
+    gsl_matrix_free(J);
     
     c = gsl_vector_get(s->x, 0); sig_c = sqrt(gsl_matrix_get(covar,0,0));
     k = gsl_vector_get(s->x, 1); sig_k = sqrt(gsl_matrix_get(covar,1,1));
