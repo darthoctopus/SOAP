@@ -5,8 +5,7 @@ SOAP version 2.0, downloaded from
 The original readme is reproduced below.
 
 
-
-
+```
       ######          ###########            #####         ###########        #######
     #        #      #             #        #       #       #          #     #         #
    #               #               #     #           #     #           #               #
@@ -34,20 +33,16 @@ The original readme is reproduced below.
    | Version 1.0 - Xavier Dumusque                      #       #
    | xdumusque@cfa.harvard.edu                              #
    |_____________________________________________________________________________________
-   
 
-#########################################
-INTRODUCTION
-#########################################
+```
+
+# INTRODUCTION
 
 SOAP 2.0 is a code that estimates the effects of active regions, spots or plages, on radial-velocity and photometric measurements. SOAP 2.0 gives access to the radial-velocity, the bisector span, the full width at half maximum variations as defined with the cross-correlation technique and optimized to reproduce the HARPS (HARPS-N) observations. The photometric variation induced by active regions (flux at 5293 Angstrom) is also returned by SOAP 2.0.
 
 The code is published in Dumusque et al. (2014, ApJ, 796, 132) and you are advised to look at this paper and reference therein for more information about the code. To summarize, the code is based on SOAP (Boise et al. 2012, A&A, 545, 109) with some modifications to include the effect of the inhibition of convection in magnetic regions due to strong local magnetic fields. This effect has been shown to be significant for stars similar to the Sun for which plages are dominating (Meunier et al 2010, A&A, 512, 39). To include this effect, we used observed spectra of the Sun taken with the Kitt Peak Fourrier Transform Spectrograph (FTS). Including this inhibition of the convective blueshift effect using solar spectra allows reproducing better the observations of slow rotators (see Dumusque 2014, ApJ, 796, 133).
 
-
-#########################################
-INSTALLATION
-#########################################
+# INSTALLATION
 
 The SOAP 2.0 code is written in C, with a python interface for plotting the results.
 The code has been tested on python 2.6 and 2.7 and though it is expected to work properly on more recent versions, the user is advised to use this version in case of troubles.
@@ -76,11 +71,10 @@ $ cp build/lib.****/starspot.so .           (where **** corresponds to your oper
 You might have a warning "Using deprecated NumPy API...” when compiling the C file using the command “python setup.py build”, however this will not affect SOAP 2.
 
 
-#########################################
-RUNNING SOAP 2.0
-#########################################
+# RUNNING SOAP 2.0
 
-CONFIGURATION:
+## CONFIGURATION
+
 The configuration of SOAP 2.0 is done using the config.cfg file. Inside this ascii file, you can configure the resolution of the grid used for the simulation (grid) and the resolution of the active region circumference (nrho). The instrumental resolution can also be changed.  It is of course possible to configure the stellar properties (inclination, rotational period, radius..) and the active regions properties (active region type (spot, plage), longitude, latitude, size). Finally, it is possible to configure at which phase the output is generated. Everything is commented in the config.cfg file and it should be easy to configure it yourself.
 
 Up to four active regions, spots or plages, can be created with SOAP 2.0, however it is easy to configure the program to accept more active regions.
@@ -92,7 +86,8 @@ or
 $ ipython soap2.py (for the one that have installed ipython (much more flexible than python))
 
 
-DISPLAY:
+## DISPLAY
+
 To work with python in interactive mode, which display interactive figures, you should configure the correct backend for you operating system. This can be done by opening the matplotlibrc file in the main SOAP_2 folder and change the value of the backend variable. For MacOSX, choose MacOSX, for Linux, choose belong GTKAgg, TkAGG, WX, WXAgg, QtAgg, Qt4Agg and test if it works (see here for more information http://matplotlib.org/faq/usage_faq.html#what-is-a-backend). You can check in your original matplotlibrc file what is the value for the backend, as this one should be correctly configured (this original file should be in the matplotlib directory that can be find in the python site-package folder: /Library/Python/2.7/site-packages/matplotlib-1.3.1-py2.7-macosx-10.9-intel.egg/matplotlib/mpl-data for my MacOSX installation)
 
 If you are in interactive mode two plots appear. The first plot shows the two CCF derived from the quiet photosphere spectrum and from the spot spectrum of the Kitt Peak FTS solar observations. The second plot shows as a function of phase the effect in flux, radial-velocity (RV), bisector span (Bis Span) and full width at half maximum (Fwhm) of the disc-integrated CCF. Note that for each observable, the flux effect (only due to the contrast difference of the active regions), the convective blueshift effect (only due to the inhibition of the convective blueshift inside active regions) and the combined effect are returned.
@@ -102,20 +97,18 @@ If you are not in interactive mode (Agg backend), the figures are not displayed.
 Note that if the wrong interactive backend is selected, python might crash (not always the case) because it cannot find the backend, and therefore no output will be generated. If you cannot find any interactive backend that works, you should select the Agg backend. You will not be able to have interactive figures, but they will be saved in .pdf format anyway.
 
 
-OUTPUTS:
+## OUTPUTS
+
 The following files will be created in a specific folder that can be found in the ‘outputs’ directory. The name of this folder depends on the active region configuration that you chose and will contain:
 - A .pdf file for each generated figure
 - a .rdb file that gives the value of all the observables for all calculated phase
 - a ‘fits’ folder where .fits files for each phase is created. The headers of these files contain all the information about the configuration used and the calculated observables. The data of the fits files contain the disc-integrated CCF from which the RV, Bis Span and Fwhm are calculated.
 
-
-CODE RAPIDITY:
+## CODE RAPIDITY
 The rapidity of the code can be increased by reducing the number of phase at which the outputs are calculated. In addition the efficiency of the code can be improved by reducing  the stellar grid resolution (GRID = 300) or the spot circumference resolution (NRHO = 20). I would not select a grid resolution smaller than 100 and a circumference resolution smaller than 10. For big active regions, the decrease in resolution will not influence strongly the observable variations, but be careful for small active regions. No serious test have been done to check the effect of small resolution and I would advise to always compare the results with the standard resolution (GRID = 300, NRHO = 20) to be sure that the observed variations are induced by active regions and not by numerical imprecision.
 
 
-#########################################
-TROUBLESHOOTINGS
-#########################################
+# TROUBLESHOOTINGS
 
 Did you make sure you are using python 2.6 or 2.7, and have installed the libraries specified above?
 
@@ -147,10 +140,7 @@ In this case, update the gsl_lib_dir variable.
 
 If still you cannot install and/or give the correct path to your libraries, please go and see you system administrator that will help you. This is not a problem of SOAP 2 and I will not reply to library problem requests.
 
-
-#########################################
-CONTACT
-#########################################
+# CONTACT
 
 Xavier Dumusque
 
@@ -160,6 +150,3 @@ Harvard Smithsonian Center for Astrophysics
 60 Garden Street
 02138 Cambridge, MA
 USA
-
-
-
