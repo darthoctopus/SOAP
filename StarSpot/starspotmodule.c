@@ -385,7 +385,19 @@ static PyMethodDef PhasmMethods[] = {
     {NULL, NULL, 0, NULL}
 };
 
-void initstarspot(void){
+/*void initstarspot(void){
     (void) Py_InitModule("starspot", PhasmMethods);
     import_array();
+}*/
+
+static struct PyModuleDef starspot = {
+        PyModuleDef_HEAD_INIT,
+        "starspot",  // Module name
+        "starspot module for use with SOAP 2.0.", //Docstring
+        -1, //module keeps state in global variables
+        PhasmMethods
+};
+
+PyMODINIT_FUNC PyInit_starspot(void) {
+        return PyModule_Create(&starspot);
 }
